@@ -11,13 +11,14 @@ type Scene interface {
 }
 
 // SceneManagerは現在のシーンと次のシーンを持つ構造体
-//
+// ebiten.Game interfaceのメンバ変数にして使う
 type SceneManager struct {
 	current        Scene
 	next           Scene
 	transitionFlag bool
 }
 
+// ebiten.GameのUpdateと同じ．
 func (s *SceneManager) Update() error {
 
 	if !s.transitionFlag {
@@ -31,10 +32,12 @@ func (s *SceneManager) Update() error {
 	return nil
 }
 
+// ebiten.GameのDrawと同じ．
 func (s *SceneManager) Draw(r *ebiten.Image) {
 	s.current.Draw(r)
 }
 
+// SceneManagerのcurrentを引数のsceneに変更する．
 func (s *SceneManager) GoTo(scene Scene) {
 	if s.current == nil {
 		s.current = scene
