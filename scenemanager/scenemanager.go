@@ -4,25 +4,24 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
+// SceneはDrawとUpdateを持つインタフェースです．
 type Scene interface {
-	Update(state *GameState) error
+	Update(sceneManager *SceneManager) error
 	Draw(r *ebiten.Image)
 }
 
+// SceneManagerは現在のシーンと次のシーンを持つ構造体
+//
 type SceneManager struct {
 	current        Scene
 	next           Scene
 	transitionFlag bool
 }
 
-type GameState struct {
-	SceneManager *SceneManager
-}
-
 func (s *SceneManager) Update() error {
 
 	if !s.transitionFlag {
-		return s.current.Update(&GameState{SceneManager: s})
+		return s.current.Update(s)
 	}
 
 	s.transitionFlag = false
