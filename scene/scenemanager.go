@@ -1,14 +1,8 @@
-package scenemanager
+package scene
 
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 )
-
-// Scene is an interface with Draw and Update.
-type Scene interface {
-	Update(sceneManager *SceneManager) error
-	Draw(r *ebiten.Image)
-}
 
 // SceneManager is a struct that holds the current scene and next scene
 // Use it as a member variable of ebiten.Game interface.
