@@ -1,4 +1,4 @@
-module github.com/supertikuwa/ebiten-scene
+module github.com/supertikuwa/ebiten-scene/scene
 
 go 1.16
 
